@@ -20,9 +20,17 @@ def handle_events():
     for event in get_events():
         if event.type == SDL_QUIT:
             game_framework.quit()
-        elif event.type == SDL_KEYDOWN and event.key == SDLK_0:
-            set_ball_size(BALL_NONE)
+        elif event.type == SDL_KEYDOWN:
+            if event.key == SDLK_0:
+                set_ball_size(BALL_NONE)
+            elif event.key == SDLK_1:
+                set_ball_size(BALL_SMALL)
+            elif event.key == SDLK_2:
+                set_ball_size(BALL_LARGE)
+            else:
+                continue
             game_framework.change_mode(play_mode)
+            return
 
 
 def update():
@@ -33,6 +41,3 @@ def render():
     clear_canvas()
     item_select_image.draw(400, 300)
     update_canvas()
-
-
-
