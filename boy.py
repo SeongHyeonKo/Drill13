@@ -1,4 +1,4 @@
-from math import pi
+﻿from math import pi
 
 from pico2d import get_canvas_width, get_time, load_image
 from sdl2 import (SDL_KEYDOWN, SDL_KEYUP, SDLK_LEFT, SDLK_RIGHT,
@@ -6,7 +6,7 @@ from sdl2 import (SDL_KEYDOWN, SDL_KEYUP, SDLK_LEFT, SDLK_RIGHT,
 from transitions import Machine
 
 import game_world
-from ball import Ball
+from ball import Ball, BALL_NONE, get_ball_size
 
 
 class Boy:
@@ -47,6 +47,8 @@ class Boy:
         self.frame = 0
 
     def fire_ball(self):
+        if get_ball_size() == BALL_NONE:
+            return
         ball = Ball(self.x, self.y, self.face_dir * 10)
         game_world.add_oject(ball)
 
@@ -111,3 +113,5 @@ class Boy:
             row = 300 if self.face_dir == 1 else 200
             self.image.clip_draw(self.frame * 100, row, 100, 100,
                                  self.x, self.y)
+
+
