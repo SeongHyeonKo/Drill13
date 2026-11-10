@@ -1,6 +1,7 @@
-from pico2d import *
+﻿from pico2d import *
 import game_framework
 import game_world
+import item_mode
 
 pause_font = None
 
@@ -21,7 +22,15 @@ def handle_events():
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_p:
             game_framework.pop_mode()
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_i:
+            game_framework.push_mode(item_mode)
 
+
+def pause():
+    pass
+
+def resume():
+    pass
 
 def update():
     pass
@@ -32,4 +41,7 @@ def render():
     game_world.render()
     pause_font.draw(320, 340, 'PAUSED', (255, 255, 255))
     pause_font.draw(250, 295, 'Press P to resume', (255, 255, 255))
+    pause_font.draw(250, 250, 'Press I to choose item', (255, 255, 255))
     update_canvas()
+
+

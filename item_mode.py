@@ -1,6 +1,5 @@
 ﻿from pico2d import *
 import game_framework
-import play_mode
 from ball import BALL_NONE, BALL_SMALL, BALL_LARGE, set_ball_size
 
 item_select_image = None
@@ -29,7 +28,7 @@ def handle_events():
                 set_ball_size(BALL_LARGE)
             else:
                 continue
-            game_framework.change_mode(play_mode)
+            game_framework.pop_mode()
             return
 
 
@@ -41,3 +40,5 @@ def render():
     clear_canvas()
     item_select_image.draw(400, 300)
     update_canvas()
+
+
